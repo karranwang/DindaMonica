@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Drive</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f1f3f4;
+      transition: opacity 0.3s ease;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: white;
+    }
+
+    .menu-icon, .profile-icon {
+      width: 32px;
+      height: 32px;
+      margin: 0 10px;
+    }
+
+    .search-bar {
+      flex: 1;
+      background-color: #e9ecef;
+      border-radius: 20px;
+      padding: 8px 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar input {
+      border: none;
+      background: transparent;
+      outline: none;
+      width: 100%;
+    }
+
+    .tab-menu {
+      display: flex;
+      justify-content: space-around;
+      border-bottom: 2px solid #ddd;
+      background-color: white;
+    }
+
+    .tab-menu div {
+      padding: 10px 0;
+      flex: 1;
+      text-align: center;
+      font-weight: bold;
+      color: #5f6368;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab-menu .active {
+      color: #1a73e8;
+      border-bottom: 2px solid #1a73e8;
+    }
+
+    .folder-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 10px;
+    }
+
+    .folder {
+      background-color: #eaf1fb;
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 120px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .folder:hover {
+      transform: scale(1.02);
+    }
+
+    .folder img {
+      width: 100px;
+      height: auto;
+    }
+
+    .folder-name {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .folder-options {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 18px;
+    }
+
+    .floating-buttons {
+      position: fixed;
+      right: 20px;
+      bottom: 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 5;
+    }
+
+    .floating-buttons button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background-color: #f8f9fa;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      font-size: 24px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #fff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 6px 0;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 11px;
+      color: #5f6368;
+    }
+
+    .nav-item.active {
+      color: #1a73e8;
+    }
+
+    .material-icons {
+      font-size: 24px;
+      margin-bottom: 2px;
+    }
+
+    .fade-out {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <img src="https://img.icons8.com/material-outlined/24/000000/menu--v1.png" class="menu-icon" />
+    <div class="search-bar">
+      <input type="text" placeholder="Telusuri di Drive">
+    </div>
+    <img src="https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png" class="profile-icon" />
+  </div>
+
+  <!-- Tab Menu -->
+  <div class="tab-menu">
+    <div class="active">Drive Saya</div>
+    <div>Komputer</div>
+  </div>
+
+  <!-- Folder Grid -->
+  <div class="folder-grid">
+    <div class="folder" onclick="openFolder('folder1/index.html')">
+      <img src="images/folder.png" alt="Folder Icon">
+      <div class="folder-name">1.VIDEOKU</div>
+      <div class="folder-options">&#8942;</div>
+    </div>
+    <div class="folder" onclick="openFolder('folder2/index.html')">
+      <img src="images/folder.png" alt="Folder Icon">
+      <div class="folder-name">2.UKHTY</div>
+      <div class="folder-options">&#8942;</div>
+    </div>
+    <div class="folder" onclick="openFolder('folder3/index.html')">
+      <img src="images/folder.png" alt="Folder Icon">
+      <div class="folder-name">3.NEW 🔥</div>
+      <div class="folder-options">&#8942;</div>
+    </div>
+    <div class="folder" onclick="openFolder('folder4/index.html')">
+      <img src="images/folder.png" alt="Folder Icon">
+      <div class="folder-name">4.HOT 🔥</div>
+      <div class="folder-options">&#8942;</div>
+    </div>
+    <div class="folder" onclick="openFolder('folder5/index.html')">
+      <img src="images/folder.png" alt="Folder Icon">
+      <div class="folder-name">5.VIRAL</div>
+      <div class="folder-options">&#8942;</div>
+    </div>
+    <div class="folder" onclick="openFolder('folder6/index.html')">
+      <img src="images/folder.png" alt="Folder Icon">
+      <div class="folder-name">6.CAMPUR</div>
+      <div class="folder-options">&#8942;</div>
+    </div>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <button style="background-color: pink;">
+      <span class="material-icons">photo_camera</span>
+    </button>
+    <button>
+      <span class="material-icons">add</span>
+    </button>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <div class="nav-item">
+      <span class="material-icons">home</span>
+      Beranda
+    </div>
+    <div class="nav-item">
+      <span class="material-icons">star</span>
+      Berbintang
+    </div>
+    <div class="nav-item">
+      <span class="material-icons">group</span>
+      Dibagikan
+    </div>
+    <div class="nav-item active">
+      <span class="material-icons">folder</span>
+      File
+    </div>
+  </div>
+
+  <script>
+    function openFolder(url) {
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = url;
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
